@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <Feature Id="ProductFeature" Title="PluginInstaller" Level="1">
+      <Feature Id="CoreModuleFeature" Title="Core" Level="1" AllowAdvertise="no" Absent="disallow">
+        <MergeRef Id="CoreModule" />
+      </Feature>
+    </Feature>
+	</Fragment>
+</Wix>

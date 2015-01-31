@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="{8E93D1E7-C05F-40A0-B737-C053C1EE3E0A}" Name="PluginInstaller" Language="1033" Version="1.0.0.0" Manufacturer="test" UpgradeCode="eed33233-e773-45c2-87a1-ab349191a30a">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Id="{9C7D28B4-FBAD-4FE6-A204-8F6A11D89792}"/>
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<Media Id="1" Cabinet="Cab1.cab" EmbedCab="yes" />
+    
+    <UIRef Id="WixUI_FeatureTree"/>
+
+    <FeatureRef Id="ProductFeature">
+      <Feature Id="PluginA" Title="Plugin A" Level="1" AllowAdvertise="no">
+        <ComponentGroupRef Id="ProductComponents" />
+      </Feature>
+    </FeatureRef>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="PluginInstaller" />
+        <Merge Id="CoreModule" Language="1033" SourceFile="..\CoreModule\bin\Debug\CoreModule.msm" DiskId="1" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="PluginAComp" Guid="{7641AF10-B2EF-4639-A0B4-34AE819CAD38}">
+        <File Id="PluginAFile" KeyPath="yes" Source=".\PluginA.txt" />
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
