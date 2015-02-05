@@ -1,10 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Fragment>
+  <Fragment>
+
     <Feature Id="ProductFeature" Title="PluginInstaller" Level="1">
       <Feature Id="CoreModuleFeature" Title="Core" Level="1" AllowAdvertise="no" Absent="disallow">
         <MergeRef Id="CoreModule" />
+        <ComponentRef Id="CoreRegistryEntries"/>
       </Feature>
     </Feature>
-	</Fragment>
+
+  </Fragment>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="CompanyFolder" Name="PluginCompanyFolder">
+          <Directory Id="INSTALLDIR" Name="PluginInstaller">
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+
+  </Fragment>
+
+  <Fragment>
+    
+    <Property Id="CORE_INSTALLATION_PATH">
+      <RegistrySearch Id="InstallFolderRegistrySearch" Type="raw" Root="HKLM" Key="SOFTWARE\PluginCompany\Plugins" Name="InstallFolder"/>
+    </Property>
+
+    <SetDirectory Id="INSTALLDIR" Value="[CORE_INSTALLATION_PATH]">CORE_INSTALLATION_PATH</SetDirectory>
+    
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="CoreRegistryEntries" Guid="{C1701385-12CA-47EF-9FB2-884139B56390}">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\PluginCompany\Plugins" Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="string" Name="InstallFolder" Value="[INSTALLDIR]" KeyPath="yes"/>
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
 </Wix>

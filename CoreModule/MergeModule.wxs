@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Module Id="CoreModule" Language="1033" Version="1.0.0.0">
-		<Package Id="751e70eb-cf76-413b-b8c8-231a31f9c946" Manufacturer="test" InstallerVersion="200" />
+  <Module Id="CoreModule" Language="1033" Version="1.0.0.0">
+    <Package Id="751e70eb-cf76-413b-b8c8-231a31f9c946" Manufacturer="test" InstallerVersion="200" />
 
-    <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="INSTALLFOLDER" Name="PluginInstaller">
-        <Component Id="CoreComp" Guid="{161F78E1-0ABD-4FCD-92FC-6095A45F78B3}">
-          <File Id="CoreFile" KeyPath="yes" Source=".\Core.txt" />
-        </Component>
-      </Directory>
-    </Directory>
-	</Module>
+    <Component Id="CoreComp" Guid="{161F78E1-0ABD-4FCD-92FC-6095A45F78B3}" Directory="INSTALLDIR">
+      <File Id="CoreFile" KeyPath="yes" Source=".\Core.txt" />
+    </Component>
+
+  </Module>
 </Wix>

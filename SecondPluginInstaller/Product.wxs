@@ -6,27 +6,21 @@
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <Media Id="1" Cabinet="Cab1.cab" EmbedCab="yes" />
 
-    <UIRef Id="WixUI_FeatureTree"/>
+    <UIRef Id="WixUI_InstallDir"/>
 
     <FeatureRef Id="ProductFeature">
       <Feature Id="PluginB" Title="Plugin B" Level="1" AllowAdvertise="no">
         <ComponentGroupRef Id="ProductComponents" />
       </Feature>
     </FeatureRef>
-    
   </Product>
 
   <Fragment>
-    <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLFOLDER" Name="PluginInstaller" />
-        <Merge Id="CoreModule" Language="1033" SourceFile="..\CoreModule\bin\Debug\CoreModule.msm" DiskId="1" />
-      </Directory>
-    </Directory>
-  </Fragment>
+    <DirectoryRef Id="INSTALLDIR">
+      <Merge Id="CoreModule" Language="1033" SourceFile="..\CoreModule\bin\Debug\CoreModule.msm" DiskId="1" />
+    </DirectoryRef>
 
-  <Fragment>
-    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLDIR">
       <Component Id="PluginBComp" Guid="{D11704D9-9911-483A-B204-B2171DCB0E67}">
         <File Id="PluginBFile" KeyPath="yes" Source=".\PluginB.txt" />
       </Component>
