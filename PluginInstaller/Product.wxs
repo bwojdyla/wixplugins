@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="{8E93D1E7-C05F-40A0-B737-C053C1EE3E0A}" Name="PluginInstaller" Language="1033" Version="1.0.0.0" Manufacturer="test" UpgradeCode="eed33233-e773-45c2-87a1-ab349191a30a">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Id="{9C7D28B4-FBAD-4FE6-A204-8F6A11D89792}"/>
+	<Product Id="{1604E97E-1AC2-4C0B-ACC9-FC18736FEC71}" Name="PluginInstaller" Language="1033" Version="1.0.0.0" Manufacturer="test" UpgradeCode="eed33233-e773-45c2-87a1-ab349191a30a">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"/>
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<Media Id="1" Cabinet="Cab1.cab" EmbedCab="yes" />

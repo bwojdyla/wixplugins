@@ -1,0 +1,4 @@
+CoreModule/bin/
+*/obj/
+*.suo
+*/bin/*
